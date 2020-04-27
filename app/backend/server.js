@@ -31,9 +31,11 @@ connection.once('open', () => {
 
 // require route files
 const projectRouter = require('./routes/project');
+const adminRouter = require('./routes/admin');
 
 // use route files
 app.use('/projects', projectRouter);
+app.use('/admin', adminRouter);
 
 // start server
 app.listen(port, () => {
