@@ -2,37 +2,39 @@
 const router = require('express').Router();
 
 // project model
-let Project = require('../models/project.model');
+let Projects = require('../models/project.model');
 
 // get
-router.route('/admin/projects').get((req, res) => {
+router.route('/').get((req, res) => {
     // Finds and displays all projects
-    Project.find()
+    Projects.find()
         .then(projects => res.json(projects))
         .catch(err => res.status(400).json('Error(get all projects): ' + err));
 });
 
 // add new
-router.route('/admin/projects/add').post((req, res) => {
-    const projType = req.body.projectType;
-    const creekName = req.body.creekName;
-    const latitude = req.body.latitude;
-    const longitude = req.body.longitude;
-    const projDesc = req.body.projectDescription;
-    const funFact = req.body.funFact;
-    const fishType = req.body.fishType;
-    const projUrl = req.body.projectUrl;
+router.route('/add').post((req, res) => {
+    // pull in values from request body
+    const ProjectType = String(req.body.ProjectType);
+    const CreekName = String(req.body.CreekName);
+    const Latitude = Number(req.body.Latitude);
+    const Longitude = Number(req.body.Longitude);
+    const ProjectDescription = String(req.body.ProjectDescription);
+    const FunFact = String(req.body.FunFact);
+    const FishType = String(req.body.FishType);
+    const ProjectUrl = String(req.body.ProjectUrl);
 
     // create new project
-    const newProject = new Project({
-        projType,
-        creekName,
-        latitude,
-        longitude,
-        projDesc,
-        funFact,
-        fishType,
-        projUrl
+    // must give project obj variable names that correspond to its schema names
+    const newProject = new Projects({
+        ProjectType,
+        CreekName,
+        Latitude,
+        Longitude,
+        ProjectDescription,
+        FunFact,
+        FishType,
+        ProjectUrl
     });
 
     newProject.save()
@@ -41,8 +43,8 @@ router.route('/admin/projects/add').post((req, res) => {
 });
 
 // edit (id passed in url)
-router.route('/admin/projects/edit/:id').post((req, res) => {
-    Project.findById(req.params.id)
+router.route('/edit/:id').post((req, res) => {
+    Projects.findById(req.params.id)
         .then(project => {
             project.ProjectType = req.body.projectType;
             project.CreekName = req.body.creekName;
@@ -63,19 +65,19 @@ router.route('/admin/projects/edit/:id').post((req, res) => {
 
 
 // delete
-router.route('/admin/projects/:id').delete((req, res) => {
-    Project.findByIdAndDelete(req.params.id)
+router.route('/:id').delete((req, res) => {
+    Projects.findByIdAndDelete(req.params.id)
         .then(() => res.json('Project Successfully Deleted'))
         .catch(err => res.status(400).json('Error(delete project): ' + err));
 });
 
 // details
 // find by id
-router.route('/admin/projects/:id').get((req, res) => {
-    Project.findById(req.params.id)
+router.route('/:id').get((req, res) => {
+    Projects.findById(req.params.id)
         .then(project => res.json(project))
         .catch(err => res.status(400).json('Error(project details): ' + err));
 });
 
 // export router for use in server.js
-module.exports.router;
+module.exports = router;

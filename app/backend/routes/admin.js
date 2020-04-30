@@ -7,12 +7,14 @@ const bcrypt = require('bcrypt');
 let Admin = require('../models/admin.model');
 
 // get login form
-router.route('/admin').get((req, res) => {
-    
+router.route('/').get((req, res) => {
+    Admin.find()
+        .then(admin => res.json(admin))
+        .catch(err => res.status(400).json("Error(get admin): " + err))
 });
 
 // post login form
-router.route('/admin').post((req, res) => {
+router.route('/').post((req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
