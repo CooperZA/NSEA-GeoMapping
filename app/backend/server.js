@@ -32,10 +32,14 @@ connection.once('open', () => {
 // require route files
 const projectRouter = require('./routes/project');
 const adminRouter = require('./routes/admin');
+const fishTypeRouter = require('./routes/fishtype');
+const projectTpyeRouter = require('./routes/projecttype');
 
 // use route files
 app.use('/projects', projectRouter);
 app.use('/admin', adminRouter);
+app.use('/fish', fishTypeRouter);
+app.use('/projecttype', projectTpyeRouter);
 
 // start server
 app.listen(port, () => {
