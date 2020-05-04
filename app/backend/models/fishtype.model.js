@@ -6,11 +6,11 @@ const Schema = mongoose.Schema;
 
 // Fish Type schema
 const fishTypeSchema = new Schema({
-    FishType: { type: String, required: true }
+    FishType: { type: String, required: true, trim: true }
 });
 
 // create FishType model
-const FishType = mongoose.model('FishType', fishTypeSchema);
+const Fish = mongoose.model('FishType', fishTypeSchema);
 
 // export fish type
-module.exports = FishType;
+module.exports = Fish;

@@ -5,12 +5,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Project Type Schema
-const projectType = new Schema({
+const projectTypeSchema = new Schema({
     ProjectType: { type: String, trim: true, required: true }
 });
 
 // create mongoose model
-const ProjectType = mongoose.model('ProjectType', projectType);
+const ProjType = mongoose.model('ProjectType', projectTypeSchema);
 
 // export project type model
-module.exports = ProjectType;
+module.exports = ProjType;

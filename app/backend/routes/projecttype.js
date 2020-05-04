@@ -2,12 +2,12 @@
 const router = require('express').Router();
 
 // require project type model
-let ProjectType = require('../models/projecttype.model');
+let ProjType = require('../models/projecttype.model');
 
 // get
 router.route('/').get((req, res) => {
     // get all Fishtypes
-    ProjectType.find()
+    ProjType.find()
         .then(project => res.json(project))
         .catch(err => res.status(400).json('Error(get all project types): ' + err));
 });
@@ -18,7 +18,7 @@ router.route('/add').post((req, res) => {
     const ProjectType = String(req.body.ProjectType);
 
     // create new fish type
-    const newProject = new ProjectType({
+    const newProject = new ProjType({
         ProjectType
     });
 
@@ -30,7 +30,7 @@ router.route('/add').post((req, res) => {
 
 // delete fish type
 router.route('/:id').delete((req, res) => {
-    ProjectType.findByIdAndDelete(req.params.id)
+    ProjType.findByIdAndDelete(req.params.id)
         .then(() => res.json('ProjectType Deleted!'))
         .catch(err => res.status(400).json('Error(deleting project type): ' + err));
 });

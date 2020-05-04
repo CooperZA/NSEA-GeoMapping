@@ -2,12 +2,12 @@
 const router = require('express').Router();
 
 // require fishtype model
-let FishType = require('../models/fishtype.model');
+let Fish = require('../models/fishtype.model');
 
 // get
 router.route('/').get((req, res) => {
     // get all Fishtypes
-    FishType.find()
+    Fish.find()
         .then(fish => res.json(fish))
         .catch(err => res.status(400).json('Error(get all fish types): ' + err));
 });
@@ -18,7 +18,7 @@ router.route('/add').post((req, res) => {
     const FishType = String(req.body.FishType);
 
     // create new fish type
-    const newFish = new FishType({
+    const newFish = new Fish({
         FishType
     });
 
@@ -30,7 +30,7 @@ router.route('/add').post((req, res) => {
 
 // delete fish type
 router.route('/:id').delete((req, res) => {
-    FishType.findByIdAndDelete(req.params.id)
+    Fish.findByIdAndDelete(req.params.id)
         .then(() => res.json('FishType Deleted!'))
         .catch(err => res.status(400).json('Error(deleting fish): ' + err));
 });

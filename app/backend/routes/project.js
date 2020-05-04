@@ -46,14 +46,15 @@ router.route('/add').post((req, res) => {
 router.route('/edit/:id').post((req, res) => {
     Projects.findById(req.params.id)
         .then(project => {
-            project.ProjectType = req.body.projectType;
-            project.CreekName = req.body.creekName;
-            project.Latitude = Number(req.body.latitude);
-            project.Longitude = Number(req.body.longitude);
-            project.ProjectDescription = req.body.projectDescription;
-            project.FunFact = req.body.funFact;
-            project.FishType = req.body.fishType;
-            project.ProjectType = req.body.projectType;
+            console.log(req);
+            project.ProjectType = req.body.ProjectType;
+            project.CreekName = req.body.CreekName;
+            project.Latitude = Number(req.body.Latitude);
+            project.Longitude = Number(req.body.Longitude);
+            project.ProjectDescription = req.body.ProjectDescription;
+            project.FunFact = req.body.FunFact;
+            project.FishType = req.body.FishType;
+            project.ProjectUrl = req.body.ProjectUrl;
 
             // save project
             project.save()

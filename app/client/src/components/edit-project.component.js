@@ -18,14 +18,16 @@ export default class EditProject extends Component {
 
         // set state
         this.state = {
-            ProjectType: [],
+            ProjectType: '',
             CreekName: '',
             Latitude: 0,
             Longitude: 0,
             ProjectDescription: '',
             FunFact: '',
-            FishType: [],
-            ProjectUrl: ''
+            FishType: '',
+            ProjectUrl: '',
+            ProjectTypeArr: [],
+            FishTypeArr: []
         }
     }
 
