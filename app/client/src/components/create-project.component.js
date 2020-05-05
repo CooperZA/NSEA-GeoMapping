@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import  axios from 'axios';
+import axios from 'axios';
 
 export default class CreateProject extends Component{
     constructor(props){
@@ -17,20 +17,46 @@ export default class CreateProject extends Component{
 
         // set state
         this.state = {
-            ProjectType: [],
+            ProjectType: '',
             CreekName: '',
             Latitude: 0,
             Longitude: 0,
             ProjectDescription: '',
             FunFact: '',
-            FishType: [],
-            ProjectUrl: ''
+            FishType: '',
+            ProjectUrl: '',
+            ProjectTypeArr: [],
+            FishTypeArr: []
         }
     }
 
-    // TODO: create routes and Models for Fish Type and Project Type so they can be pulled from the database
     componentDidMount(){
         // populate dropdown boxes for fish type and project type
+        // get project types
+        axios.get('http://localhost:5000/projecttype/')
+            .then(res => {
+                if (res.data.length > 0){
+                    this.setState({
+                        // create project types array
+                        ProjectTypeArr: res.data.map(pt => pt.ProjectType),
+                        // assign ProjectType to default value of the first project in the response
+                        ProjectType: res.data[0].ProjectType
+                    })
+                }
+            });
+
+        // get fishtypes
+        axios.get('http://localhost:5000/fish/')
+            .then(res => {
+                if (res.data.length > 0){
+                    this.setState({
+                        // add fish types to fish type array
+                        FishTypeArr: res.data.map(ft => ft.FishType),
+                        // default fish is first fish in response data
+                        FishType: res.data[0].FishType
+                    })
+                }
+            });
     } 
 
     onChangeProjectType(e){
@@ -113,7 +139,9 @@ export default class CreateProject extends Component{
                         <select ref="userInput" required className="" value={this.state.ProjectType} onChange={this.onChangeProjectType}>
                             {
                                 // create drop down options
-                                
+                                this.state.ProjectTypeArr.map((pt) => {
+                                    return <option key={pt} value={pt}>{pt}</option>
+                                })
                             }
                         </select>
                     </div>
@@ -178,7 +206,9 @@ export default class CreateProject extends Component{
                         <select ref="userInput" required className="" value={this.state.FishType} onChange={this.onChangeFishType}>
                             {
                                 // create drop down options
-                                
+                                this.state.FishTypeArr.map((ft) => {
+                                    return <option key={ft} value={ft}>{ft}</option>
+                                })
                             }
                         </select>
                     </div>

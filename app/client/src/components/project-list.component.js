@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 // functional React component
+// called in projectList method
 const Project = props => (
     <tr>
         <td>{ props.project.ProjectType }</td>
@@ -52,7 +53,7 @@ export default class ProjectList extends Component {
 
     projectList(){
         return this.state.projects.map(currentProject => {
-            return <Exercise
+            return <Project
                         project={currentProject}
                         deleteProject={this.deleteProject}
                         key={currentProject._id}
