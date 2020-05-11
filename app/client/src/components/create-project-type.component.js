@@ -43,20 +43,20 @@ export default class CreateProjectType extends Component{
             <div>
                 <h3>Create New Project Type</h3>
                 <form onSubmit={this.onSubmit}>
-                    <div className>
+                    <div className="form-group">
                         <label>ProjectType:</label>
                         <input 
                             type="text"
                             required
-                            className
+                            className="form-control"
                             value={this.state.username}
                             onChange={this.onChangeProjectType}
                         />
                     </div>
-                    <div className>
+                    <div className="form-group">
                         <input
                             type="submit"
-                            className
+                            className="btn btn-primary"
                             value="Create ProjectType"
                         />
                     </div>

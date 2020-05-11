@@ -4,25 +4,25 @@ import { Link } from 'react-router-dom';
 export default class Navbar extends Componenet{
     render(){
         return(
-            <nav>
-                <Link to="/projects/">NSEA-Project-Map</Link>
-                <div>
+            <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+                <Link to="/projects/" className="navbar-brand">NSEA-Project-Map</Link>
+                <div className="collapse navbar-collapse">
                     {/* home, create project, create project type, create fish type, go to map */}
-                    <ul>
-                        <li>
-                            <Link to="/projects/" className="">Projects</Link>
+                    <ul className="navbar-nav mr-auto">
+                        <li className="navbar-item">
+                            <Link to="/projects/" className="nav-link">Projects</Link>
                         </li>
-                        <li>
-                            <Link to="/projects/create" className="">Add New Project</Link>
+                        <li className="navbar-item">
+                            <Link to="/projects/create" className="nav-link">Add New Project</Link>
                         </li>
-                        <li>
-                            <Link to="/projecttype/create" className="">Add New Project Type</Link>
+                        <li className="navbar-item">
+                            <Link to="/projecttype/create" className="nav-link">Add New Project Type</Link>
                         </li>
-                        <li>
-                            <Link to="/fishtype/create" className="">Add New Fish Type</Link>
+                        <li className="navbar-item">
+                            <Link to="/fishtype/create" className="nav-link">Add New Fish Type</Link>
                         </li>
-                        <li>
-                            <Link to="/map/" className="">Go To Map</Link>
+                        <li className="navbar-item">
+                            <Link to="/" className="nav-link">Go To Map</Link>
                         </li>
                     </ul>
                 </div>

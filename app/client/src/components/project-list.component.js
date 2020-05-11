@@ -65,8 +65,8 @@ export default class ProjectList extends Component {
         return (
             <div>
                 <h3>Projects</h3>
-                <table className="">
-                    <thead className="">
+                <table className="table">
+                    <thead className="thead-light">
                         <tr>
                             <th>Project Type</th>
                             <th>Creek Name</th>

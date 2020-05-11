@@ -153,9 +153,9 @@ export default class EditProject extends Component {
             <div>
                 <h3>Add New Project</h3>
                 <form onSubmit={this.onSubmit}>
-                    <div className="">
+                    <div className="form-group">
                         <label>Project Type:</label>
-                        <select ref="userInput" required className="" value={this.state.ProjectType} onChange={this.onChangeProjectType}>
+                        <select ref="userInput" required className="form-control" value={this.state.ProjectType} onChange={this.onChangeProjectType}>
                             {
                                 // create drop down options
                                 this.state.ProjectTypeArr.map((pt) => {
@@ -165,64 +165,64 @@ export default class EditProject extends Component {
                         </select>
                     </div>
 
-                    <div className="">
+                    <div className="form-group">
                         <label>Creek Name:</label>
                         <input
                             type="text"
                             required
-                            className=""
+                            className="form-control"
                             value={this.state.CreekName}
                             onChange={this.onChangeCreekName}
                         />
                     </div>
 
-                    <div className="">
+                    <div className="form-group">
                         <label>Latitude:</label>
                         <input
                             type="text"
                             required
-                            className=""
+                            className="form-control"
                             value={this.state.Latitude}
                             onChange={this.onChangeLatitude}
                         />
                     </div>
 
-                    <div className="">
+                    <div className="form-group">
                         <label>Longitude:</label>
                         <input
                             type="text"
                             required
-                            className=""
+                            className="form-control"
                             value={this.state.Longitude}
                             onChange={this.onChangeLongitude}
                         />
                     </div>
 
-                    <div className="">
+                    <div className="form-group">
                         <label>Project Description:</label>
                         <input
                             type="text"
                             required
-                            className=""
+                            className="form-control"
                             value={this.state.ProjectDescription}
                             onChange={this.onChangeProjectDescription}
                         />
                     </div>
 
-                    <div className="">
+                    <div className="form-group">
                         <label>Fun Fact:</label>
                         <input
                             type="text"
                             required
-                            className=""
+                            className="form-control"
                             value={this.state.FunFact}
                             onChange={this.onChangeFunFact}
                         />
                     </div>
 
-                    <div className="">
+                    <div className="form-group">
                         <label>Fish Type:</label>
-                        <select ref="userInput" required className="" value={this.state.FishType} onChange={this.onChangeFishType}>
+                        <select ref="userInput" required className="form-control" value={this.state.FishType} onChange={this.onChangeFishType}>
                             {
                                 // create drop down options
                                 this.state.FishTypeArr.map((ft) => {
@@ -232,22 +232,22 @@ export default class EditProject extends Component {
                         </select>
                     </div>
                     
-                    <div className="">
+                    <div className="form-group">
                         <label>Project Url:</label>
                         <input
                             type="text"
                             required
-                            className=""
+                            className="form-control"
                             value={this.state.ProjectUrl}
                             onChange={this.ProjectUrl}
                         />
                     </div>
 
-                    <div className="">
+                    <div className="form-group">
                         <input
                             type="submit"
                             value="Add Project"
-                            className=""
+                            className="btn btn-primary"
                         />
                     </div>
                 </form>

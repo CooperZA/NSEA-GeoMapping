@@ -9,6 +9,9 @@ import Magifying from '../assets/Magifying.svg';
 import Shovel from '../assets/Shovel.svg';
 import Tree from '../assets/Tree.svg';
 
+// configures for .env files
+require('dotenv').config();
+
 // Mapbox Api Key
 const mapboxKey = process.env.REACT_APP_MAPBOX_API_TOKEN;
 // Mapbox Style

@@ -43,20 +43,20 @@ export default class CreateFishType extends Component{
             <div>
                 <h3>Create New Fish Type</h3>
                 <form onSubmit={this.onSubmit}>
-                    <div className>
+                    <div className="form-group">
                         <label>FishType:</label>
                         <input 
                             type="text"
                             required
-                            className
+                            className="form-control"
                             value={this.state.username}
                             onChange={this.onChangeFishType}
                         />
                     </div>
-                    <div className>
+                    <div className="form-group">
                         <input
                             type="submit"
-                            className
+                            className="btn btn-primary"
                             value="Create FishType"
                         />
                     </div>
