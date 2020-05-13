@@ -145,10 +145,11 @@ export default class Map extends Component{
                             });
                         }}
                         >
-
                             {/* TODO: Get layout for popup */}
                             <div>
                                 <h2>{this.state.SelectedProject.PlaceName}</h2>
+                                <p>{this.state.SelectedProject.ProjectDescription}</p>
+                                <a href={this.state.SelectedProject.ProjectUrl}>{this.state.SelectedProject.ProjectUrl}</a>
                             </div>
                         </Popup>
                     ) : null}
