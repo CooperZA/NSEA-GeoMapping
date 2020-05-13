@@ -7,26 +7,26 @@ export default class CreateProject extends Component{
 
         // bind this to methods
         this.onChangeProjectType = this.onChangeProjectType.bind(this);
-        this.onChangeCreekName = this.onChangeCreekName.bind(this);
+        this.onChangePlaceName = this.onChangePlaceName.bind(this);
         this.onChangeLatitude = this.onChangeLatitude.bind(this);
         this.onChangeLongitude = this.onChangeLongitude.bind(this);
         this.onChangeProjectDescription = this.onChangeProjectDescription.bind(this);
-        this.onChangeFunFact = this.onChangeFunFact.bind(this);
-        this.FishType = this.onChangeFishType.bind(this);
         this.onChangeProjectUrl = this.onChangeProjectUrl.bind(this);
+        // this.onChangeFunFact = this.onChangeFunFact.bind(this);
+        // this.FishType = this.onChangeFishType.bind(this);
 
         // set state
         this.state = {
             ProjectType: '',
-            CreekName: '',
+            PlaceName: '',
             Latitude: 0,
             Longitude: 0,
             ProjectDescription: '',
-            FunFact: '',
-            FishType: '',
             ProjectUrl: '',
             ProjectTypeArr: [],
-            FishTypeArr: []
+            // FunFact: '',
+            // FishType: '',
+            // FishTypeArr: []
         }
     }
 
@@ -46,17 +46,17 @@ export default class CreateProject extends Component{
             });
 
         // get fishtypes
-        axios.get('http://localhost:5000/fish/')
-            .then(res => {
-                if (res.data.length > 0){
-                    this.setState({
-                        // add fish types to fish type array
-                        FishTypeArr: res.data.map(ft => ft.FishType),
-                        // default fish is first fish in response data
-                        FishType: res.data[0].FishType
-                    })
-                }
-            });
+        // axios.get('http://localhost:5000/fish/')
+        //     .then(res => {
+        //         if (res.data.length > 0){
+        //             this.setState({
+        //                 // add fish types to fish type array
+        //                 FishTypeArr: res.data.map(ft => ft.FishType),
+        //                 // default fish is first fish in response data
+        //                 FishType: res.data[0].FishType
+        //             })
+        //         }
+        //     });
     } 
 
     onChangeProjectType(e){
@@ -65,9 +65,9 @@ export default class CreateProject extends Component{
         });
     }
 
-    onChangeCreekName(e){
+    onChangePlaceName(e){
         this.setState({
-            CreekName: e.target.value
+            PlaceName: e.target.value
         });
     }
 
@@ -89,17 +89,17 @@ export default class CreateProject extends Component{
         });
     }
 
-    onChangeFunFact(e){
-        this.setState({
-           FunFact: e.target.value
-        });
-    }
+    // onChangeFunFact(e){
+    //     this.setState({
+    //        FunFact: e.target.value
+    //     });
+    // }
 
-    onChangeFishType(e){
-        this.setState({
-            FishType: e.target.value
-        });
-    }
+    // onChangeFishType(e){
+    //     this.setState({
+    //         FishType: e.target.value
+    //     });
+    // }
 
     onChangeProjectUrl(e){
         this.setState({
@@ -112,19 +112,20 @@ export default class CreateProject extends Component{
 
         const project = {
             ProjectType: this.state.ProjectType,
-            CreekName: this.state.CreekName,
+            PlaceName: this.state.PlaceName,
             Latitude: this.state.Latitude,
             Longitude: this.state.Longitude,
             ProjectDescription: this.state.ProjectDescription,
-            FunFact: this.state.FunFact,
-            FishType: this.state.FishType,
-            ProjectUrl: this.state.ProjectUrl
+            ProjectUrl: this.state.ProjectUrl,
+            // FunFact: this.state.FunFact,
+            // FishType: this.state.FishType,
         }
 
         console.log(project);
 
         axios.post('http://localhost:5000/projects/add', project)
-            .then(res => console.log(res.data));
+            .then(res => console.log(res.data))
+            .catch(err => console.log('Error posting project: ' + err));
 
         window.location = '/projects/';
     }
@@ -147,12 +148,12 @@ export default class CreateProject extends Component{
                     </div>
 
                     <div className="form-group">
-                        <label>Creek Name:</label>
+                        <label>Place Name: (i.e. school, creek name, project)</label>
                         <input
                             type="text"
                             required
                             className="form-control"
-                            value={this.state.CreekName}
+                            value={this.state.PlaceName}
                             onChange={this.onChangeCreekName}
                         />
                     </div>
@@ -190,7 +191,7 @@ export default class CreateProject extends Component{
                         />
                     </div>
 
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label>Fun Fact:</label>
                         <input
                             type="text"
@@ -211,7 +212,7 @@ export default class CreateProject extends Component{
                                 })
                             }
                         </select>
-                    </div>
+                    </div> */}
 
                     <div className="form-group">
                         <label>Project Url:</label>
