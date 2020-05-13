@@ -29,7 +29,7 @@ export default class CreateProjectType extends Component{
         console.log(Project);
 
         // send to db
-        axios.post('http://localhost:5000/fish/add', Project)
+        axios.post('http://localhost:5000/projecttype/add', Project)
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
 

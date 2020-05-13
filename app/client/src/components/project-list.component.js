@@ -7,13 +7,13 @@ import axios from 'axios';
 const Project = props => (
     <tr>
         <td>{ props.project.ProjectType }</td>
-        <td>{ props.project.CreekName }</td>
+        <td>{ props.project.PlaceName }</td>
         <td>{ props.project.Latitude }</td>
         <td>{ props.project.Longitude }</td>
         <td>{ props.project.ProjectDescription }</td>
-        <td>{ props.project.FunFact }</td>
-        <td>{ props.project.FishType }</td>
         <td>{ props.project.ProjectUrl }</td>
+        {/* <td>{ props.project.FunFact }</td>
+        <td>{ props.project.FishType }</td> */}
         <td>
             <Link to={"/edit/"+props.project._id}>edit</Link> | <button onClick={() => { props.deleteProject(props.project._id) }}>delete</button>
         </td>
@@ -73,10 +73,10 @@ export default class ProjectList extends Component {
                             <th>Latitude</th>
                             <th>Longitude</th>
                             <th>Project Description</th>
-                            <th>Fun Fact</th>
-                            <th>Fish Type</th>
                             <th>Project Url</th>
                             <th>Actions</th>
+                            {/* <th>Fun Fact</th>
+                            <th>Fish Type</th> */}
                         </tr>
                     </thead>
                     <tbody>

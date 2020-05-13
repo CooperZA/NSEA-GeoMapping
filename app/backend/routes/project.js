@@ -16,7 +16,7 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
     // pull in values from request body
     const ProjectType = String(req.body.ProjectType);
-    const CreekName = String(req.body.CreekName);
+    const PlaceName = String(req.body.PlaceName);
     const Latitude = Number(req.body.Latitude);
     const Longitude = Number(req.body.Longitude);
     const ProjectDescription = String(req.body.ProjectDescription);
@@ -28,7 +28,7 @@ router.route('/add').post((req, res) => {
     // must give project obj variable names that correspond to its schema names
     const newProject = new Projects({
         ProjectType,
-        CreekName,
+        PlaceName,
         Latitude,
         Longitude,
         ProjectDescription,
@@ -48,7 +48,7 @@ router.route('/edit/:id').post((req, res) => {
         .then(project => {
             console.log(req);
             project.ProjectType = req.body.ProjectType;
-            project.CreekName = req.body.CreekName;
+            project.PlaceName = req.body.PlaceName;
             project.Latitude = Number(req.body.Latitude);
             project.Longitude = Number(req.body.Longitude);
             project.ProjectDescription = req.body.ProjectDescription;
