@@ -26,7 +26,9 @@ export default class ProjectList extends Component {
 
         this.deleteProject = this.deleteProject.bind(this);
 
-        this.state = { projects: [] };
+        this.state = { 
+            projects: [],
+        };
     }
 
     componentDidMount(){

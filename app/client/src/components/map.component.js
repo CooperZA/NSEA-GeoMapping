@@ -3,17 +3,17 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import axios from 'axios';
 
 // icons
-import School from '../assets/School.svg';
-import FishPassageBarrier from '../assets/FishPassageBarrier.svg';
-import FieldTrip from '../assets/FieldTrip.svg';
-import WorkSite from '../assets/WorkSite.svg';
-import Planting from '../assets/Planting.svg';
+import School from './assets/School.svg';
+import FishPassageBarrier from './assets/FishPassageBarrier.svg';
+import FieldTrip from './assets/FieldTrip.svg';
+import WorkSite from './assets/WorkSite.svg';
+import Planting from './assets/Planting.svg';
 
 // configures for .env files
 require('dotenv').config();
 
 // Mapbox Api Key
-const mapboxKey = process.env.REACT_APP_MAPBOX_API_TOKEN;
+const mapboxApiKey = process.env.REACT_APP_MAPBOX_API_TOKEN;
 // Mapbox Style
 const mapboxStyle = process.env.REACT_APP_MAP_STYLE;
 
@@ -46,12 +46,11 @@ export default class Map extends Component{
 
     componentDidMount(){
         // get list of projects
-        // TODO: Look at exercises-list coponent for maping and populating array
         axios.get('http://localhost:5000/projects/')
             .then(res => {
                 if (res.data.length > 0){
                     this.setState({
-                        Projects: res.data.map(project => project)
+                        Projects: res.data
                     })
                 }
             })
@@ -70,11 +69,11 @@ export default class Map extends Component{
         //     .catch(err => console.log(err));
     }
 
-    onChangeFishType(e){
-        this.setState({
-            FishType: e.target.value
-        })
-    }
+    // onChangeFishType(e){
+    //     this.setState({
+    //         FishType: e.target.value
+    //     })
+    // }
 
     // svg selector function
     svgSelector(projectType = "FishPassageBarrier"){
@@ -114,8 +113,8 @@ export default class Map extends Component{
                 <ReactMapGL
                     {...this.state.viewport}
                     onViewportChange={(viewport) => this.setState({viewport})}
-                    mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-                    mapStyle={process.env.REACT_APP_MAP_STYLE}
+                    mapboxApiAccessToken={mapboxApiKey}
+                    mapStyle={mapboxStyle}
                 >
                     {/* markers for each project */}
                     {this.state.Projects.map(project => {
@@ -145,7 +144,6 @@ export default class Map extends Component{
                             });
                         }}
                         >
-                            {/* TODO: Get layout for popup */}
                             <div>
                                 <h2>{this.state.SelectedProject.PlaceName}</h2>
                                 <p>{this.state.SelectedProject.ProjectDescription}</p>
