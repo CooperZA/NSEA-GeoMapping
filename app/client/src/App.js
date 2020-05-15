@@ -10,8 +10,8 @@ import Navbar from "./components/navbar.component";
 import ProjectList from "./components/project-list.component";
 import CreateProject from "./components/create-project.component";
 import EditProject from "./components/edit-project.component";
-import CreateFishType from './components/create-fish-type.component';
-import CreateProjectType from './components/create-project-type.component';
+// import CreateFishType from './components/create-fish-type.component';
+// import CreateProjectType from './components/create-project-type.component';
 
 function App() {
   return (
@@ -23,8 +23,8 @@ function App() {
         <Route path="/projects" exact component={ProjectList} />
         <Route path="/projects/edit/:id" exact component={EditProject} />
         <Route path="/projects/create" exact component={CreateProject} />
-        <Route path="/fish/create" exact component={CreateFishType} />
-        <Route path="/projecttype/create" exact component={CreateProjectType} />
+        {/* <Route path="/fish/create" exact component={CreateFishType} /> */}
+        {/* <Route path="/projecttype/create" exact component={CreateProjectType} /> */}
       </div>
     </Router>
   );

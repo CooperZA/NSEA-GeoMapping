@@ -15,12 +15,12 @@ export default class Navbar extends Componenet{
                         <li className="navbar-item">
                             <Link to="/projects/create" className="nav-link">Add New Project</Link>
                         </li>
-                        <li className="navbar-item">
+                        {/* <li className="navbar-item">
                             <Link to="/projecttype/create" className="nav-link">Add New Project Type</Link>
-                        </li>
-                        <li className="navbar-item">
+                        </li> */}
+                        {/* <li className="navbar-item">
                             <Link to="/fishtype/create" className="nav-link">Add New Fish Type</Link>
-                        </li>
+                        </li> */}
                         <li className="navbar-item">
                             <Link to="/" className="nav-link">Go To Map</Link>
                         </li>
