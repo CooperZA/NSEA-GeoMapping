@@ -12,6 +12,7 @@ export default class CreateProject extends Component{
         this.onChangeLongitude = this.onChangeLongitude.bind(this);
         this.onChangeProjectDescription = this.onChangeProjectDescription.bind(this);
         this.onChangeProjectUrl = this.onChangeProjectUrl.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
         // this.onChangeFunFact = this.onChangeFunFact.bind(this);
         // this.FishType = this.onChangeFishType.bind(this);
 
@@ -73,13 +74,13 @@ export default class CreateProject extends Component{
 
     onChangeLatitude(e){
         this.setState({
-            Latitude: Number(e.target.value)
+            Latitude: e.target.value
         });
     }
 
     onChangeLongitude(e){
         this.setState({
-            Longitude: Number(e.target.value)
+            Longitude: e.target.value
         });
     }
 
@@ -113,8 +114,8 @@ export default class CreateProject extends Component{
         const project = {
             ProjectType: this.state.ProjectType,
             PlaceName: this.state.PlaceName,
-            Latitude: this.state.Latitude,
-            Longitude: this.state.Longitude,
+            Latitude: parseFloat(this.state.Latitude),
+            Longitude: parseFloat(this.state.Longitude),
             ProjectDescription: this.state.ProjectDescription,
             ProjectUrl: this.state.ProjectUrl,
             // FunFact: this.state.FunFact,
@@ -154,7 +155,7 @@ export default class CreateProject extends Component{
                             required
                             className="form-control"
                             value={this.state.PlaceName}
-                            onChange={this.onChangeCreekName}
+                            onChange={this.onChangePlaceName}
                         />
                     </div>
 
@@ -221,7 +222,7 @@ export default class CreateProject extends Component{
                             required
                             className="form-control"
                             value={this.state.ProjectUrl}
-                            onChange={this.ProjectUrl}
+                            onChange={this.onChangeProjectUrl}
                         />
                     </div>
 

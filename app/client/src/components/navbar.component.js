@@ -1,11 +1,12 @@
-import React, { Componenet } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-export default class Navbar extends Componenet{
+export default class Navbar extends Component{
     render(){
         return(
             <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
                 <Link to="/projects/" className="navbar-brand">NSEA-Project-Map</Link>
+                {/* <Link to="/" className="navbar-brand">NSEA-Project-Map</Link> */}
                 <div className="collapse navbar-collapse">
                     {/* home, create project, create project type, create fish type, go to map */}
                     <ul className="navbar-nav mr-auto">

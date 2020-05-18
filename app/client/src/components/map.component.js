@@ -3,17 +3,17 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import axios from 'axios';
 
 // icons
-import School from './assets/School.svg';
-import FishPassageBarrier from './assets/FishPassageBarrier.svg';
-import FieldTrip from './assets/FieldTrip.svg';
-import WorkSite from './assets/WorkSite.svg';
-import Planting from './assets/Planting.svg';
+import School from '../assets/School.svg';
+import FishPassageBarrier from '../assets/FishPassageBarrier.svg';
+import FieldTrip from '../assets/FieldTrip.svg';
+import WorkSite from '../assets/WorkSite.svg';
+import Planting from '../assets/Planting.svg';
 
 // configures for .env files
 require('dotenv').config();
 
 // Mapbox Api Key
-const mapboxApiKey = process.env.REACT_APP_MAPBOX_API_TOKEN;
+const mapboxApiKey = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 // Mapbox Style
 const mapboxStyle = process.env.REACT_APP_MAP_STYLE;
 
@@ -22,7 +22,7 @@ export default class Map extends Component{
         super(props)
 
         // bind this to methods
-        this.onChangeFishType = this.onChangeFishType.bind(this);
+        // this.onChangeFishType = this.onChangeFishType.bind(this);
         this.svgSelector = this.svgSelector.bind(this);
 
         this.state = {
@@ -30,7 +30,7 @@ export default class Map extends Component{
                 width: "100vh",
                 height: "100vh",
                 latitude: 48.796827,
-                longitude: 122.126277,
+                longitude: -122.126277,
                 zoom: 10
             },
             // keep track of selected project on map 
@@ -118,7 +118,7 @@ export default class Map extends Component{
                 >
                     {/* markers for each project */}
                     {this.state.Projects.map(project => {
-                        <Marker key={project._id} latitude={project.Latitude} longitude={project.Longitude}>
+                        return <Marker key={project._id} latitude={project.Latitude} longitude={project.Longitude}>
                             <button 
                             className="marker-btn" 
                             // on click of project, set the current selected project
@@ -129,7 +129,7 @@ export default class Map extends Component{
                                 })
                             }}
                             >
-                                <img src={this.svgSelector(project.ProjectType)} />
+                                <img src={this.svgSelector(project.ProjectType)} alt={project.ProjectType} />
                             </button>
                         </Marker>
                     })}
@@ -145,9 +145,9 @@ export default class Map extends Component{
                         }}
                         >
                             <div>
-                                <h2>{this.state.SelectedProject.PlaceName}</h2>
+                                <h3>{this.state.SelectedProject.PlaceName}</h3>
                                 <p>{this.state.SelectedProject.ProjectDescription}</p>
-                                <a href={this.state.SelectedProject.ProjectUrl}>{this.state.SelectedProject.ProjectUrl}</a>
+                                <a href={this.state.SelectedProject.ProjectUrl} rel="noopener noreferrer" target="_blank">{this.state.SelectedProject.ProjectUrl}</a>
                             </div>
                         </Popup>
                     ) : null}

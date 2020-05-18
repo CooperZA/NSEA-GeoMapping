@@ -16,7 +16,7 @@ import EditProject from "./components/edit-project.component";
 function App() {
   return (
     <Router>
-      <div>
+      <div className="container">
         <Navbar/>
         <br/>
         <Route path="/" exact component={Map} />

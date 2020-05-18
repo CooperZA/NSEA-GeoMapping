@@ -15,7 +15,9 @@ const Project = props => (
         {/* <td>{ props.project.FunFact }</td>
         <td>{ props.project.FishType }</td> */}
         <td>
-            <Link to={"/edit/"+props.project._id}>edit</Link> | <button onClick={() => { props.deleteProject(props.project._id) }}>delete</button>
+            <span>
+                <Link to={"/projects/edit/"+props.project._id}>edit</Link> | <button className="btn btn-danger" onClick={() => { props.deleteProject(props.project._id) }}>delete</button>
+            </span>
         </td>
     </tr>
 )
