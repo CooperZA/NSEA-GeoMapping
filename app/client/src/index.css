@@ -26,3 +26,8 @@ code {
 td span{
   display: inline-block;
 }
+
+.map{
+  width: 100%;
+  height: 100%;
+}

@@ -3,11 +3,11 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import axios from 'axios';
 
 // icons
-import School from '../assets/School.svg';
+import SchoolName from '../assets/SchoolName.svg';
 import FishPassageBarrier from '../assets/FishPassageBarrier.svg';
-import FieldTrip from '../assets/FieldTrip.svg';
-import WorkSite from '../assets/WorkSite.svg';
-import Planting from '../assets/Planting.svg';
+import FieldTripSite from '../assets/FieldTripSite.svg';
+import LargeWoodyDebris from '../assets/LargeWoodyDebris.svg';
+import RiparianPlanting from '../assets/RiparianPlanting.svg';
 
 // configures for .env files
 require('dotenv').config();
@@ -85,17 +85,17 @@ export default class Map extends Component{
         let svg = null;
     
         switch (projectType){
-            case "FieldTrip":
-                svg = FieldTrip;
+            case "FieldTripSite":
+                svg = FieldTripSite;
                 break;
-            case "Planting":
-                svg = Planting;
+            case "RiparianPlanting":
+                svg = RiparianPlanting;
                 break;
-            case "School":
-                svg = School;
+            case "SchoolName":
+                svg = SchoolName;
                 break;
-            case "WorkSite":
-                svg = WorkSite;
+            case "LargeWoodyDebris":
+                svg = LargeWoodyDebris;
                 break;
             case "FishPassageBarrier":
                 svg = FishPassageBarrier;
@@ -109,7 +109,7 @@ export default class Map extends Component{
 
     render(){
         return(
-            <div>
+            <div className="map">
                 <ReactMapGL
                     {...this.state.viewport}
                     onViewportChange={(viewport) => this.setState({viewport})}

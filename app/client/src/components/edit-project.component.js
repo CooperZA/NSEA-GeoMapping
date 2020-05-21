@@ -152,10 +152,10 @@ export default class EditProject extends Component {
     render(){
         return (
             <div>
-                <h3>Add New Project</h3>
+                <h3>Add New Data Point</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Project Type:</label>
+                        <label>Type:</label>
                         <select ref="userInput" required className="form-control" value={this.state.ProjectType} onChange={this.onChangeProjectType}>
                             {
                                 // create drop down options
@@ -200,7 +200,7 @@ export default class EditProject extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label>Project Description:</label>
+                        <label>Description:</label>
                         <input
                             type="text"
                             required
@@ -234,7 +234,7 @@ export default class EditProject extends Component {
                     </div> */}
                     
                     <div className="form-group">
-                        <label>Project Url:</label>
+                        <label>Url:</label>
                         <input
                             type="text"
                             required
@@ -247,7 +247,7 @@ export default class EditProject extends Component {
                     <div className="form-group">
                         <input
                             type="submit"
-                            value="Add Project"
+                            value="Submit"
                             className="btn btn-primary"
                         />
                     </div>
