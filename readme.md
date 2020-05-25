@@ -22,3 +22,38 @@ Github: stillj2 (stillj2@wwu.edu)
  Designer
 
 Email for questions about the project or the codebase
+
+## Functional Demo
+
+Requirements: Git, Nodejs and node package manager installed
+
+Step 1 clone repository:
+Git clone the project repository
+https://github.com/CooperZA/NSEA-GeoMapping.git
+
+Step 2 install dependencies:
+in a terminal
+
+cd into app/backend/
+
+run npm install bcrypt cors dotenv express mongoose nodemon
+
+in a separate terminal
+cd into app/client
+
+run npm install axios bootstrap dotenv react react-dom react-map-gl react-router-dom react-scripts
+
+Step 3 send me an email:
+send Zach an email zach@raincityolutions.com requesting access to the project and Zach will all the database to be read by all users.
+
+Step 4 run project:
+in the backend terminal you opened earlier 
+
+run nodemon server
+
+in the client terminal you opened earlier
+
+run npm start
+
+Step 5 view application:
+The application should now be running in your bowser
