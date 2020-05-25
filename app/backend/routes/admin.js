@@ -15,10 +15,10 @@ router.route('/').get((req, res) => {
 
 // post login form
 router.route('/').post((req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
+    const Username = req.body.Username;
+    const Password = req.body.Password;
 
-    Admin.findOne({ Username: username })
+    Admin.findOne({ Username: Username })
         .then(user => {
             console.log("user from login", user);
             if(!user){
@@ -26,7 +26,7 @@ router.route('/').post((req, res) => {
                 res.sendStatus(204);
             }else{
                 // compare passwords
-                bcrypt.compare(password, user.Password)
+                bcrypt.compare(Password, user.Password)
                     .then(pwMatch => pwMatch ? res.sendStatus(200) : res.sendStatus(204))
                     .catch(err => res.status(400).json('Error(post login form): ' + err));
             }   
