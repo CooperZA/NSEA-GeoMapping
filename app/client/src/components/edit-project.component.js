@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// Datepicker?
+import Navbar from './navbar.component';
 
 export default class EditProject extends Component {
     constructor(props) {
@@ -32,8 +32,8 @@ export default class EditProject extends Component {
         }
     }
 
-    componentDidMount(){
-        axios.get('http://localhost:5000/projects/'+this.props.match.params.id)
+    componentDidMount() {
+        axios.get('http://localhost:5000/projects/' + this.props.match.params.id)
             .then(res => {
                 this.setState({
                     ProjectType: res.data.ProjectType,
@@ -49,13 +49,13 @@ export default class EditProject extends Component {
             .catch(err => {
                 console.log(err);
             })
-        
+
         // Get Project anf Fish Types
         // populate dropdown boxes for fish type and project type
         // get project types
         axios.get('http://localhost:5000/projecttype/')
             .then(res => {
-                if (res.data.length > 0){
+                if (res.data.length > 0) {
                     this.setState({
                         // create project types array
                         ProjectTypeArr: res.data.map(pt => pt.ProjectType),
@@ -79,31 +79,31 @@ export default class EditProject extends Component {
         //     });
     }
 
-    onChangeProjectType(e){
+    onChangeProjectType(e) {
         this.setState({
             ProjectType: e.target.value
         });
     }
 
-    onChangePlaceName(e){
+    onChangePlaceName(e) {
         this.setState({
             PlaceName: e.target.value
         });
     }
 
-    onChangeLatitude(e){
+    onChangeLatitude(e) {
         this.setState({
             Latitude: e.target.value
         });
     }
 
-    onChangeLongitude(e){
+    onChangeLongitude(e) {
         this.setState({
             Longitude: e.target.value
         });
     }
 
-    onChangeProjectDescription(e){
+    onChangeProjectDescription(e) {
         this.setState({
             ProjectDescription: e.target.value
         });
@@ -121,13 +121,13 @@ export default class EditProject extends Component {
     //     });
     // }
 
-    onChangeProjectUrl(e){
+    onChangeProjectUrl(e) {
         this.setState({
             ProjectUrl: e.target.value
         });
     }
 
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
 
         const project = {
@@ -143,86 +143,88 @@ export default class EditProject extends Component {
 
         console.log(project);
 
-        axios.post('http://localhost:5000/projects/edit/'+this.props.match.params.id, project)
+        axios.post('http://localhost:5000/projects/edit/' + this.props.match.params.id, project)
             .then(res => console.log(res.data));
 
         window.location = '/projects/';
     }
 
-    render(){
+    render() {
         return (
             <div>
-                <h3>Add New Data Point</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Type:</label>
-                        <select ref="userInput" required className="form-control" value={this.state.ProjectType} onChange={this.onChangeProjectType}>
-                            {
-                                // create drop down options
-                                this.state.ProjectTypeArr.map((pt) => {
-                                    return <option key={pt} value={pt}>{pt}</option>
-                                })
-                            }
-                        </select>
-                    </div>
+                <Navbar />
+                <div className="container">
+                    <h3>Add New Data Point</h3>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                            <label>Type:</label>
+                            <select ref="userInput" required className="form-control" value={this.state.ProjectType} onChange={this.onChangeProjectType}>
+                                {
+                                    // create drop down options
+                                    this.state.ProjectTypeArr.map((pt) => {
+                                        return <option key={pt} value={pt}>{pt}</option>
+                                    })
+                                }
+                            </select>
+                        </div>
 
-                    <div className="form-group">
-                        <label>Place Name: (i.e. school, creek name, project)</label>
-                        <input
-                            type="text"
-                            required
-                            className="form-control"
-                            value={this.state.PlaceName}
-                            onChange={this.onChangePlaceName}
-                        />
-                    </div>
+                        <div className="form-group">
+                            <label>Place Name: (i.e. school, creek name, project)</label>
+                            <input
+                                type="text"
+                                required
+                                className="form-control"
+                                value={this.state.PlaceName}
+                                onChange={this.onChangePlaceName}
+                            />
+                        </div>
 
-                    <div className="form-group">
-                        <label>Latitude:</label>
-                        <input
-                            type="text"
-                            required
-                            className="form-control"
-                            value={this.state.Latitude}
-                            onChange={this.onChangeLatitude}
-                        />
-                    </div>
+                        <div className="form-group">
+                            <label>Latitude:</label>
+                            <input
+                                type="text"
+                                required
+                                className="form-control"
+                                value={this.state.Latitude}
+                                onChange={this.onChangeLatitude}
+                            />
+                        </div>
 
-                    <div className="form-group">
-                        <label>Longitude:</label>
-                        <input
-                            type="text"
-                            required
-                            className="form-control"
-                            value={this.state.Longitude}
-                            onChange={this.onChangeLongitude}
-                        />
-                    </div>
+                        <div className="form-group">
+                            <label>Longitude:</label>
+                            <input
+                                type="text"
+                                required
+                                className="form-control"
+                                value={this.state.Longitude}
+                                onChange={this.onChangeLongitude}
+                            />
+                        </div>
 
-                    <div className="form-group">
-                        <label>Description:</label>
-                        <input
-                            type="text"
-                            required
-                            className="form-control"
-                            value={this.state.ProjectDescription}
-                            onChange={this.onChangeProjectDescription}
-                        />
-                    </div>
+                        <div className="form-group">
+                            <label>Description:</label>
+                            <input
+                                type="text"
+                                required
+                                className="form-control"
+                                value={this.state.ProjectDescription}
+                                onChange={this.onChangeProjectDescription}
+                            />
+                        </div>
 
-                    {/* <div className="form-group">
+                        {/* <div className="form-group">
                         <label>Fun Fact:</label>
                         <input
-                            type="text"
+                        type="text"
                             required
                             className="form-control"
                             value={this.state.FunFact}
                             onChange={this.onChangeFunFact}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Fish Type:</label>
+                            />
+                            </div>
+                            
+                            <div className="form-group">
+                            <label>Fish Type:</label>
                         <select ref="userInput" required className="form-control" value={this.state.FishType} onChange={this.onChangeFishType}>
                             {
                                 // create drop down options
@@ -230,28 +232,28 @@ export default class EditProject extends Component {
                                     return <option key={ft} value={ft}>{ft}</option>
                                 })
                             }
-                        </select>
-                    </div> */}
-                    
-                    <div className="form-group">
-                        <label>Url:</label>
-                        <input
-                            type="text"
-                            required
-                            className="form-control"
-                            value={this.state.ProjectUrl}
-                            onChange={this.onChangeProjectUrl}
-                        />
-                    </div>
+                            </select>
+                        </div> */}
 
-                    <div className="form-group">
-                        <input
-                            type="submit"
-                            value="Submit"
-                            className="btn btn-primary"
-                        />
-                    </div>
-                </form>
+                        <div className="form-group">
+                            <label>Url:</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                value={this.state.ProjectUrl}
+                                onChange={this.onChangeProjectUrl}
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <input
+                                type="submit"
+                                value="Submit"
+                                className="btn btn-primary"
+                            />
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }

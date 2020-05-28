@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 // import components
 import Map from "./components/map.component";
-import Navbar from "./components/navbar.component";
+// import Navbar from "./components/navbar.component";
 import ProjectList from "./components/project-list.component";
 import CreateProject from "./components/create-project.component";
 import EditProject from "./components/edit-project.component";
@@ -16,9 +16,9 @@ import EditProject from "./components/edit-project.component";
 function App() {
   return (
     <Router>
-      <div className="container">
-        <Navbar/>
-        <br/>
+      <div>
+        {/* <Navbar/> */}
+        {/* <br/> */}
         <Route path="/" exact component={Map} />
         <Route path="/projects" exact component={ProjectList} />
         <Route path="/projects/edit/:id" exact component={EditProject} />

@@ -1,39 +1,40 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from './navbar.component';
 
 // functional React component
 // called in projectList method
 const Project = props => (
     <tr>
-        <td>{ props.project.ProjectType }</td>
-        <td>{ props.project.PlaceName }</td>
-        <td>{ props.project.Latitude }</td>
-        <td>{ props.project.Longitude }</td>
-        <td>{ props.project.ProjectDescription }</td>
-        <td>{ props.project.ProjectUrl }</td>
+        <td>{props.project.ProjectType}</td>
+        <td>{props.project.PlaceName}</td>
+        <td>{props.project.Latitude}</td>
+        <td>{props.project.Longitude}</td>
+        <td>{props.project.ProjectDescription}</td>
+        <td>{props.project.ProjectUrl}</td>
         {/* <td>{ props.project.FunFact }</td>
         <td>{ props.project.FishType }</td> */}
         <td>
             <span>
-                <Link to={"/projects/edit/"+props.project._id}>edit</Link> | <button className="btn btn-danger" onClick={() => { props.deleteProject(props.project._id) }}>delete</button>
+                <Link to={"/projects/edit/" + props.project._id}>edit</Link> | <button className="btn btn-danger" onClick={() => { props.deleteProject(props.project._id) }}>delete</button>
             </span>
         </td>
     </tr>
 )
 
 export default class ProjectList extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.deleteProject = this.deleteProject.bind(this);
 
-        this.state = { 
+        this.state = {
             projects: [],
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         axios.get('http://localhost:5000/projects/')
             .then(res => {
                 // populate projects array with projects from the database
@@ -44,7 +45,7 @@ export default class ProjectList extends Component {
             });
     }
 
-    deleteProject(id){
+    deleteProject(id) {
         // delete from db
         axios.delete('http://localhost:5000/projects/' + id)
             .then(res => console.log(res.data));
@@ -55,38 +56,41 @@ export default class ProjectList extends Component {
         });
     }
 
-    projectList(){
+    projectList() {
         return this.state.projects.map(currentProject => {
             return <Project
-                        project={currentProject}
-                        deleteProject={this.deleteProject}
-                        key={currentProject._id}
-                    />
+                project={currentProject}
+                deleteProject={this.deleteProject}
+                key={currentProject._id}
+            />
         });
     }
 
-    render(){
+    render() {
         return (
             <div>
-                <h3>Projects</h3>
-                <table className="table">
-                    <thead className="thead-light">
-                        <tr>
-                            <th>Project Type</th>
-                            <th>Creek Name</th>
-                            <th>Latitude</th>
-                            <th>Longitude</th>
-                            <th>Project Description</th>
-                            <th>Project Url</th>
-                            <th>Actions</th>
-                            {/* <th>Fun Fact</th>
+                <Navbar />
+                <div className="container">
+                    <h3>Projects</h3>
+                    <table className="table">
+                        <thead className="thead-light">
+                            <tr>
+                                <th>Project Type</th>
+                                <th>Creek Name</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Project Description</th>
+                                <th>Project Url</th>
+                                <th>Actions</th>
+                                {/* <th>Fun Fact</th>
                             <th>Fish Type</th> */}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.projectList() }
-                    </tbody>
-                </table>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.projectList()}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }
