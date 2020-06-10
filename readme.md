@@ -18,7 +18,7 @@ Github: CooperZA (zach@raincitysolutions.com)
 Developer
 
 Juniper Still
-Github: stillj2 (stillj2@wwu.edu)
+Github: stillj2 (junistill@gmail.com)
  Designer
 
 Email for questions about the project or the codebase
