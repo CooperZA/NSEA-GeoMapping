@@ -1,3 +1,4 @@
+// requires axios, fs, and PapaParse
 const axios = require('../client/node_modules/axios');
 const fs = require('fs');
 const jsonOut = './staged_projects.json';
