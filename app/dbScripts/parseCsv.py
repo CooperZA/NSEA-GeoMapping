@@ -6,7 +6,7 @@
 # import helper modules
 import csv, json
 
-csvFilePath = 'projects.csv'
+csvFilePath = 'project.txt'
 jsonFilePath = 'staged_projects.json'
 
 # create project_data dictionary

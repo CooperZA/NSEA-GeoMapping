@@ -31,13 +31,25 @@ export default class AdminLoginForm extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        const login = {
-            Username: this.state.Username,
-            Password: this.state.Password
-        }
+        // const login = {
+        //     Username: this.state.Username,
+        //     Password: this.state.Password
+        // }
 
-        axios.post('http://localhost:5000/admin/', login)
-            .then(res => console.log(res.data))
+        axios.get('http://localhost:5000/admin/')
+            .then(res => {
+
+                const username = toString(res.data.Username)
+                const password = toString(res.data.Password)
+
+                if (username === this.state.Username && password === this.state.Password){
+                    // set cookie value to authorized
+                    
+                }else{
+                    document.getElementById('err-msg').innerHTML = "Username or Password is incorrect";
+                }
+
+            })
             .catch(err => console.log('Error (admin submit):' + err))
 
         window.location = '/projects/';
@@ -47,6 +59,7 @@ export default class AdminLoginForm extends Component {
         return (
             <div>
                 <h2>Admin Login</h2>
+                <p id="err-msg"></p>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Username:</label>
