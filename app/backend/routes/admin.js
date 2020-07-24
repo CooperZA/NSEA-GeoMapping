@@ -8,9 +8,9 @@ let Admin = require('../models/admin.model');
 
 // get login form
 router.route('/').get((req, res) => {
-    Admin.find()
+    Admin.find(req.body.Username)
         .then(admin => res.json(admin))
-        .catch(err => res.status(400).json("Error(get admin): " + err))
+        .catch(err => res.status(400).json("Could not find user: " + err))
 });
 
 // post login form
@@ -22,9 +22,13 @@ router.route('/').post((req, res) => {
 
     // encrypt Password and send to db
     const newAdmin = new Admin({
-        Username,
+        Username,https://github.com/CooperZA/NSEA-GeoMapping.git
         pwHash,
     });
+
+    newAdmin.save()
+        .then(() => console.log(res.json))
+        .catch(err => console.log(err))
 
     // Admin.findOne({ Username: Username })
     //     .then(user => {

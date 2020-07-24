@@ -31,3 +31,8 @@ td span{
   width: 100vh;
   height: 100vh;
 }
+
+#err-msg {
+  color: red;
+  text-align: center;
+}
