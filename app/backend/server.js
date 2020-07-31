@@ -1,6 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+// add express session
+// https://codeforgeek.com/manage-session-using-node-js-express-4/
+// add express auth
+// 
 
 // configures for .env files
 require('dotenv').config();
