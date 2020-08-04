@@ -41,8 +41,8 @@ const projectTypeRouter = require('./routes/projecttype');
 // use route files
 app.use('/projects', projectRouter);
 app.use('/admin', adminRouter);
-// app.use('/fish', fishTypeRouter);
 app.use('/projecttype', projectTypeRouter);
+// app.use('/fish', fishTypeRouter);
 
 // start server
 app.listen(port, () => {
