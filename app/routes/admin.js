@@ -1,8 +1,9 @@
+// Joi
+const Joi = require('joi');
 // set up express router
 const router = require('express').Router();
 // require bcrypt
 const bcrypt = require('bcrypt');
-
 // admin model
 let Admin = require('../models/admin.model');
 
