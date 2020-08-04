@@ -9,6 +9,9 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+// hide express middleware from browser
+app.disable('x-powered-by');
+
 app.use(cors());
 // parse send/receive json
 app.use(express.json());
