@@ -10,6 +10,8 @@ const adminSchema = new Schema({
     Username: { 
         type: String, 
         required: true, 
+        minlength: 3,
+        maxlength: 30,
         unique: true,
         validate: {
             validator: Username => Username.doesNotExist({ Username }),
@@ -19,7 +21,8 @@ const adminSchema = new Schema({
     Password: { 
         type: String, 
         required: true, 
-        minlength: 8 
+        minlength: 8,
+        maxlength: 16, 
     }
 });
 
