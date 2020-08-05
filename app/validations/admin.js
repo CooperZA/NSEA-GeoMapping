@@ -22,7 +22,6 @@ const password = Joi.string()
 });
 
 export const signUp = Joi.object().keys({
-    email,
     username,
     password
   });
