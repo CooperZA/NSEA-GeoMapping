@@ -7,6 +7,9 @@ const bcrypt = require('bcrypt');
 // admin model
 let Admin = require('../models/admin.model');
 
+// import signUp validation
+import { signUp } from '../validations/admin';
+
 // get login form
 router.route('/').get((req, res) => {
     Admin.find()
@@ -14,18 +17,25 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json("Error(get admin): " + err))
 });
 
-// post login form
+// post new admin login
 router.route('/').post((req, res) => {
-    const Username = req.body.Username;
-    const Password = req.body.Password;
+    const { Username, Password } = req.body;
 
-    const pwHash = bcrypt.hash(Password, 10);
+    Joi.validate({ Username, Password }, signUp);
+
+    // const pwHash = bcrypt.hash(Password, 10);
 
     // encrypt Password and send to db
     const newAdmin = new Admin({
         Username,
-        pwHash,
+        Password,
     });
+
+    newAdmin.save()
+        .then(() => res.send({ userId: newUser.id, Username}))
+        .catch(err => res.status(400).json('Error(Admin add new router): ' + err));
+
+    
 
     // Admin.findOne({ Username: Username })
     //     .then(user => {
