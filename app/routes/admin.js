@@ -3,7 +3,7 @@ const Joi = require('joi');
 // set up express router
 const router = require('express').Router();
 // require bcrypt
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 // admin model
 let Admin = require('../models/admin.model');
 // import signUp validation and helper functions
@@ -21,24 +21,28 @@ router.route('/').get((req, res) => {
 router.route('/').post((req, res) => {
     const { Username, Password } = req.body;
 
-    Joi.validate({ Username, Password }, signUp);
-
-    // const pwHash = bcrypt.hash(Password, 10);
-
-    // encrypt Password and send to db
-    const newAdmin = new Admin({
-        Username,
-        Password,
-    });
-
-    const sessionUser = sessionizeUser(newAdmin);
-
-    newAdmin.save()
+    Joi.validate({ Username, Password }, signUp)
         .then(() => {
-            req.session.user = sessionUser;
-            res.send(sessionUser);
+            // const pwHash = bcrypt.hash(Password, 10);
+        
+            // encrypt Password and send to db
+            const newAdmin = new Admin({
+                Username,
+                Password,
+            });
+        
+            const sessionUser = sessionizeUser(newAdmin);
+        
+            newAdmin.save()
+                .then(() => {
+                    req.session.user = sessionUser;
+                    res.send(sessionUser);
+                })
+                .catch(err => res.status(400).json('Error(Admin add new router): ' + parseError(err)));
+            
         })
-        .catch(err => res.status(400).json('Error(Admin add new router): ' + parseError(err)));
+        .catch(err => res.status(400).send(parseError(err)));
+
 
 });
 
