@@ -1,32 +1,55 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const session = require('express-session');
+import connectStore from 'connect-mongo';
 
 // configures for .env files
 require('dotenv').config();
 
 // configure express server
 const app = express();
+const MongoStore = connectStore(session);
 const port = process.env.PORT || 5000;
 
 // hide express middleware from browser
 app.disable('x-powered-by');
 
 app.use(cors());
+// BodyParser 
 // parse send/receive json
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // uri from mongoDB goes here
 const uri = process.env.ATLAS_URI;
 
 // connect to database
 mongoose.connect(uri, {
-   useNewUrlParser: true,
-   useCreateIndex: true,
-   useUnifiedTopology: true 
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true 
 });
 
 const connection = mongoose.connection;
+
+// setup session
+app.use(session({
+    name: process.env.SESS_NAME,
+    secret: process.env.SESS_SECRET,
+    saveUninitialized: false,
+    resave: false,
+    store: new MongoStore({
+        mongooseConnection: connection,
+        collection: 'session',
+        ttl: parseInt(process.env.SESS_LIFETIME) / 1000,
+    }),
+    cookie: {
+        sameSite: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: parseInt(process.env.SESS_LIFETIME)
+    }
+}));
 
 connection.once('open', () => {
     console.log("MongoDB database connection established");
