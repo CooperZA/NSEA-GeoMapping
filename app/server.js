@@ -59,12 +59,14 @@ connection.once('open', () => {
 const projectRouter = require('./routes/project');
 const adminRouter = require('./routes/admin');
 const projectTypeRouter = require('./routes/projecttype');
+const sessionRouter = require('./routes/session');
 // const fishTypeRouter = require('./routes/fishtype');
 
 // use route files
 app.use('/projects', projectRouter);
 app.use('/admin', adminRouter);
 app.use('/projecttype', projectTypeRouter);
+app.use('/session', sessionRouter);
 // app.use('/fish', fishTypeRouter);
 
 // start server
