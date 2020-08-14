@@ -37,24 +37,24 @@ export default class AdminLoginForm extends Component {
             Password: this.state.Password
         }
 
-        axios.get('http://localhost:5000/admin/', login)
+        axios.post('http://localhost:5000/session/', login)
             .then(res => {
 
-                const username = toString(res.data.Username)
-                const password = bcrypt.hash(toString(res.data.Password), 10)
+                // const username = toString(res.data.Username)
+                // const password = bcrypt.hash(toString(res.data.Password), 10)
 
-                if (username === this.state.Username && password === this.state.Password){
-                    // set cookie value to authorized
+                // if (username === this.state.Username && password === this.state.Password){
+                //     // set cookie value to authorized
                     
-                }else{
-                    document.getElementById('err-msg').innerHTML = "Username or Password is incorrect";
-                }
+                // }else{
+                //     document.getElementById('err-msg').innerHTML = "Username or Password is incorrect";
+                // }
 
             })
             .catch((err) => {
                 console.log('Error (admin submit):' + err)
                 // user not found
-                document.getElementById('err-msg').innerHTML = "Username or Password is incorrect";
+                // document.getElementById('err-msg').innerHTML = "Username or Password is incorrect";
             });
 
         window.location = '/projects/';
