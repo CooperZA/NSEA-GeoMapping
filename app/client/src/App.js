@@ -10,6 +10,7 @@ import Map from "./components/map.component";
 import ProjectList from "./components/project-list.component";
 import CreateProject from "./components/create-project.component";
 import EditProject from "./components/edit-project.component";
+import Admin from "./components/admin.component";
 // import CreateFishType from './components/create-fish-type.component';
 // import CreateProjectType from './components/create-project-type.component';
 
@@ -20,6 +21,7 @@ function App() {
         {/* <Navbar/> */}
         {/* <br/> */}
         <Route path="/" exact component={Map} />
+        <Route path="/login" exact component={Admin} />
         <Route path="/projects" exact component={ProjectList} />
         <Route path="/projects/edit/:id" exact component={EditProject} />
         <Route path="/projects/create" exact component={CreateProject} />
