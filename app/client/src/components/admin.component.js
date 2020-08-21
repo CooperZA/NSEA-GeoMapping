@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import bcrypt from 'bcrypt';
+import { login } from '../util/session';
 
 export default class AdminLoginForm extends Component {
     constructor(props) {
@@ -32,32 +33,12 @@ export default class AdminLoginForm extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        const login = {
+        const user = {
             Username: this.state.Username,
             Password: this.state.Password
         }
 
-        axios.post('http://localhost:5000/session/', login)
-            .then(res => {
-
-                // const username = toString(res.data.Username)
-                // const password = bcrypt.hash(toString(res.data.Password), 10)
-
-                // if (username === this.state.Username && password === this.state.Password){
-                //     // set cookie value to authorized
-                    
-                // }else{
-                //     document.getElementById('err-msg').innerHTML = "Username or Password is incorrect";
-                // }
-
-            })
-            .catch((err) => {
-                console.log('Error (admin submit):' + err)
-                // user not found
-                // document.getElementById('err-msg').innerHTML = "Username or Password is incorrect";
-            });
-
-        window.location = '/projects/';
+        login(user);
     }
 
     render() {
