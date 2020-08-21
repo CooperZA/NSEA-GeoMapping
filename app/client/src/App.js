@@ -14,6 +14,8 @@ import Admin from "./components/admin.component";
 // import CreateFishType from './components/create-fish-type.component';
 // import CreateProjectType from './components/create-project-type.component';
 
+import { AuthRoute, ProtectedRoute } from "./util/route";
+
 function App() {
   return (
     <Router>
@@ -21,10 +23,10 @@ function App() {
         {/* <Navbar/> */}
         {/* <br/> */}
         <Route path="/" exact component={Map} />
-        <Route path="/login" exact component={Admin} />
-        <Route path="/projects" exact component={ProjectList} />
-        <Route path="/projects/edit/:id" exact component={EditProject} />
-        <Route path="/projects/create" exact component={CreateProject} />
+        <AuthRoute path="/login" exact component={Admin} />
+        <ProtectedRoute path="/projects" exact component={ProjectList} />
+        <ProtectedRoute path="/projects/edit/:id" exact component={EditProject} />
+        <ProtectedRoute path="/projects/create" exact component={CreateProject} />
         {/* <Route path="/fish/create" exact component={CreateFishType} /> */}
         {/* <Route path="/projecttype/create" exact component={CreateProjectType} /> */}
       </div>
