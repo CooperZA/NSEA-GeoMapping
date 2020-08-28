@@ -2,14 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const session = require('express-session');
-import connectStore from 'connect-mongo';
+// import connectStore from 'connect-mongo';
+const connectMongo = require('connect-mongo');
 
 // configures for .env files
 require('dotenv').config();
 
 // configure express server
 const app = express();
-const MongoStore = connectStore(session);
+// const MongoStore = connectMongo.connectStore(session);
+const MongoStore = connectMongo(session)
 const port = process.env.PORT || 5000;
 
 // hide express middleware from browser

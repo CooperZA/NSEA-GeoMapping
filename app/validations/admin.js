@@ -1,4 +1,4 @@
-import Joi from 'joi';
+const Joi = require('joi');
 
 const Username = Joi.string().alphanum().min(3).max(30).required();
 
@@ -17,14 +17,25 @@ const Password = Joi.string()
         }
       }
     }
-});
+  });
 
-export const signUp = Joi.object().keys({
+module.exports = {
+  signUp: Joi.object().keys({
     Username,
     Password
-});
-
-export const signIn = Joi.object().keys({
+  }),
+  signIn: Joi.object().keys({
     Username,
     Password
-});
+  })
+}
+
+// export const signUp = Joi.object().keys({
+//   Username,
+//   Password
+// });
+
+// export const signIn = Joi.object().keys({
+//   Username,
+//   Password
+// });

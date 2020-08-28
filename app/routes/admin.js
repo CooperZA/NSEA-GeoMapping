@@ -7,8 +7,10 @@ const router = require('express').Router();
 // admin model
 let Admin = require('../models/admin.model');
 // import signUp validation and helper functions
-import { signUp } from '../validations/admin';
-import { parseError, sessionizeUser } from '../util/helpers';
+// import { signUp } from '../validations/admin';
+const validations = require('../validations/admin');
+// import { parseError, sessionizeUser } from '../util/helpers';
+const helpers = require('../util/helpers');
 
 // get login form
 router.route('/').get((req, res) => {
@@ -21,7 +23,7 @@ router.route('/').get((req, res) => {
 router.route('/').post((req, res) => {
     const { Username, Password } = req.body;
 
-    Joi.validate({ Username, Password }, signUp)
+    Joi.validate({ Username, Password }, validations.signUp)
         .then(() => {
             // const pwHash = bcrypt.hash(Password, 10);
         
@@ -31,17 +33,17 @@ router.route('/').post((req, res) => {
                 Password,
             });
         
-            const sessionUser = sessionizeUser(newAdmin);
+            const sessionUser = helpers.sessionizeUser(newAdmin);
         
             newAdmin.save()
                 .then(() => {
                     req.session.user = sessionUser;
                     res.send(sessionUser);
                 })
-                .catch(err => res.status(400).json('Error(Admin add new router): ' + parseError(err)));
+                .catch(err => res.status(400).json('Error(Admin add new router): ' + helpers.parseError(err)));
             
         })
-        .catch(err => res.status(400).send(parseError(err)));
+        .catch(err => res.status(400).send(helpers.parseError(err)));
 
 
 });
