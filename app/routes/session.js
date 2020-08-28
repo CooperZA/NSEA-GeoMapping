@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const Joi = require('joi');
 const Admin = require('../models/admin.model');
-
 // import functions
-import { signIn } from '../validations/admin';
-import { parseError, sessionizeUser } from '../util/helpers';
+const validations = require('../validations/admin');
+// import { parseError, sessionizeUser } from '../util/helpers';
+const helpers = require('../util/helpers');
 
 // check if user is signed in
 router.route("/").get(({ session: { admin }}, res) => {
@@ -15,15 +15,15 @@ router.route("/").get(({ session: { admin }}, res) => {
 router.route("/").post((req, res) => {
     const { Username, Password } = req.body;
 
-    Joi.validate({ Username, Password }, signIn)
+    Joi.validate({ Username, Password }, validations.signIn)
         .then(() => {
             const admin = Admin.findOne({ Username })
                 .then(() => {
                     if (admin && admin.comparePasswords(Password)) {
-                        const sessionAdmin = sessionizeUser(admin);
+                        const sessionAdmin = helpers.sessionizeUser(admin);
 
                         req.session.admin = sessionAdmin;
-                        res.send(sessionizeUser);
+                        res.send(sessionAdmin);
                     } else {
                         throw new Error('Invalid login credentials');
                     }
