@@ -10,6 +10,7 @@ const message = 'must be between 6-16 characters, ' +
 const Password = Joi.string()
   .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/)
   .options({
+    // Issue here with here language obj
     language: {
       string: {
         regex: {
