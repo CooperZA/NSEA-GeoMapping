@@ -34,14 +34,14 @@ https://github.com/CooperZA/NSEA-GeoMapping.git
 Step 2 install dependencies:
 in a terminal
 
-cd into app/backend/
+cd into app/
 
-run npm install bcrypt cors dotenv express mongoose nodemon
+run npm install 
 
 in a separate terminal
 cd into app/client
 
-run npm install axios bootstrap dotenv react react-dom react-map-gl react-router-dom react-scripts
+run npm install 
 
 Step 3 send me an email:
 send Zach an email zach@raincityolutions.com requesting access to the project and Zach will all the database to be read by all users.
