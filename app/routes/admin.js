@@ -1,9 +1,5 @@
-// Joi
-const Joi = require('joi');
 // set up express router
 const router = require('express').Router();
-// require bcrypt
-// const bcrypt = require('bcrypt');
 // admin model
 let Admin = require('../models/admin.model');
 // import signUp validation and helper functions
@@ -21,31 +17,35 @@ router.route('/').get((req, res) => {
 
 // post new admin login
 router.route('/').post((req, res) => {
-    const { Username, Password } = req.body;
+    // extract values
+    const Username = String(req.body.Username);
+    const Password = String(req.body.Password);
 
-    Joi.validate({ Username, Password }, validations.signUp)
+    // validate
+    const { error, value } = validations.signUp.validate({ Username, Password });
+
+    // check for errors
+    if (error != undefined) {
+        console.log(error);
+        throw new Error("object did not pass validation");
+    }
+
+    // create new admin object
+    const newAdmin = new Admin({
+        Username,
+        Password
+    });
+
+    // sessionize user
+    const sessionUser = helpers.sessionizeUser(newAdmin);
+
+    // save new admin in DB
+    newAdmin.save()
         .then(() => {
-            // const pwHash = bcrypt.hash(Password, 10);
-        
-            // encrypt Password and send to db
-            const newAdmin = new Admin({
-                Username,
-                Password,
-            });
-        
-            const sessionUser = helpers.sessionizeUser(newAdmin);
-        
-            newAdmin.save()
-                .then(() => {
-                    req.session.user = sessionUser;
-                    res.send(sessionUser);
-                })
-                .catch(err => res.status(400).json('Error(Admin add new router): ' + helpers.parseError(err)));
-            
+            req.session.user = sessionUser;
+            res.send(sessionUser);
         })
-        .catch(err => res.status(400).send(helpers.parseError(err)));
-
-
+        .catch(err => res.status(400).json('Error(Admin add new router): ' + helpers.parseError(err)));
 });
 
 module.exports = router;
