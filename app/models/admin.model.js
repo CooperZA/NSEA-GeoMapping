@@ -1,6 +1,6 @@
 // require mongoose
 const mongoose = require('mongoose');
-const { hashSync, compareSync } = require('bcrypt');
+const { hashSync, compareSync } = require('bcryptjs');
 
 // mongoose schema class
 const Schema = mongoose.Schema;
@@ -13,10 +13,10 @@ const adminSchema = new Schema({
         minlength: 3,
         maxlength: 30,
         unique: true,
-        validate: {
-            validator: Username => Username.doesNotExist({ Username }),
-            message: "Username already exists"
-        } 
+        // validate: {
+        //     validator: Username => Username.doesNotExist({ Username }),
+        //     message: "Username already exists"
+        // } 
     },
     Password: { 
         type: String, 
@@ -27,6 +27,7 @@ const adminSchema = new Schema({
 });
 
 adminSchema.pre('save', function () {
+    // hash password
     if (this.isModified('Password')){
         this.Password = hashSync(this.Password, 10);
     }
@@ -37,6 +38,7 @@ adminSchema.statics.doesNotExist = async function (field) {
 };
 
 adminSchema.methods.comparePasswords = function (password) {
+    // compair passwords
     return compareSync(password, this.password);
 };
 
