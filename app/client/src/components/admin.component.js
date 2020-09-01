@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import bcrypt from 'bcrypt';
 import { login } from '../util/session';
 
 export default class AdminLoginForm extends Component {
