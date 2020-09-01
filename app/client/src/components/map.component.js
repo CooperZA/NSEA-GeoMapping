@@ -27,7 +27,7 @@ export default class Map extends Component{
 
         this.state = {
             viewport: {
-                width: "100vh",
+                width: "100vw",
                 height: "100vh",
                 latitude: 48.796827,
                 longitude: -122.126277,
@@ -37,10 +37,6 @@ export default class Map extends Component{
             SelectedProject: null,
             // array populated with all projects from the database
             Projects: [],
-            //default fish type (fist in array)
-            // FishType: '',
-            // array of fish types from fishtype dbcollection
-            // FishTypes: [],
         }
     }
 

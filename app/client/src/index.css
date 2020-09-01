@@ -27,10 +27,10 @@ td span{
   display: inline-block;
 }
 
-.map{
+/* .map{
   width: 100vh;
   height: 100vh;
-}
+} */
 
 #err-msg {
   color: red;
