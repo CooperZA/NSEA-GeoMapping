@@ -27,6 +27,10 @@ td span{
   display: inline-block;
 }
 
+.buffer{
+  padding-top: 5%;
+}
+
 #err-msg {
   color: red;
   text-align: center;
