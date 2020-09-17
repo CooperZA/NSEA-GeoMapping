@@ -2,23 +2,20 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const session = require('express-session');
-// import connectStore from 'connect-mongo';
-const connectMongo = require('connect-mongo');
+const connectStore = require('connect-mongo');
 
 // configures for .env files
 require('dotenv').config();
 
 // configure express server
 const app = express();
-// const MongoStore = connectMongo.connectStore(session);
-const MongoStore = connectMongo(session)
+const MongoStore = connectStore(session)
 const port = process.env.PORT || 5000;
 
 // hide express middleware from browser
 app.disable('x-powered-by');
 
 app.use(cors());
-// BodyParser 
 // parse send/receive json
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -39,16 +36,17 @@ const connection = mongoose.connection;
 app.use(session({
     name: process.env.SESS_NAME,
     secret: process.env.SESS_SECRET,
-    saveUninitialized: false,
-    resave: false,
     store: new MongoStore({
         mongooseConnection: connection,
         collection: 'session',
         ttl: parseInt(process.env.SESS_LIFETIME) / 1000,
     }),
+    saveUninitialized: false,
+    resave: false,
     cookie: {
+        httpOnly: false,
         sameSite: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: process.env.NODE_ENV === 'production' ? true : false,
         maxAge: parseInt(process.env.SESS_LIFETIME)
     }
 }));
