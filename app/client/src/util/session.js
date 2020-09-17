@@ -1,37 +1,25 @@
 import Axios from "axios";
 
-export const login = user => {
-    Axios.post("http://localhost:5000/session/", user)
+export const login = admin => {
+    return Axios.post("http://localhost:5000/session/", admin);
 };
 
 export const logout = () => {
-    Axios.delete("http://localhost:5000/session/")
+    return Axios.delete("http://localhost:5000/session/");
 };
 
-// export const checkLoggedIn = async preloadedState => {
-//     const response = await Axios.get("http://localhost:5000/session/");
-//     const { user } = await response.json();
-
-//     let preloadedState = {};
-
-//     if (user) {
-//         preloadedState = {
-//             session: user,
-//         };
-//     }
-//     return preloadedState;
+// export const signup = admin => {
+//     Axios.post("http://localhost:5000/admin/", admin);
 // };
 
 export const checkLoggedIn = async preloadedState => {
     const res = await Axios.get("http://localhost:5000/session/");
-    console.log(res);
-    const { user } = await res.data;
-
+    const admin = await res.session;
     preloadedState = {};
 
-    if (user) {
+    if (admin) {
         preloadedState = {
-            session: user,
+            session: admin,
         };
     }
     return preloadedState;

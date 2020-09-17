@@ -38,8 +38,8 @@ adminSchema.statics.doesNotExist = async function (field) {
 };
 
 adminSchema.methods.comparePasswords = function (password) {
-    // compair passwords
-    return compareSync(password, this.password);
+    // compare passwords
+    return compareSync(password, this.Password);
 };
 
 // create model from adminSchema obj
