@@ -43,6 +43,7 @@ router.route('/').post((req, res) => {
     newAdmin.save()
         .then(() => {
             req.session.user = sessionUser;
+            console.log(req.session);
             res.send(sessionUser);
         })
         .catch(err => res.status(400).json('Error(Admin add new router): ' + helpers.parseError(err)));
