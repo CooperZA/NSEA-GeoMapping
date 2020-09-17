@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import CreateProject from './create-project.component';
 
-export default class CreateProjectType extends Component{
-    constructor(props){
+const mapStateToProps = ({ session }) => ({
+    session
+});
+
+export default class CreateProjectType extends Component {
+    constructor(props) {
         super(props);
 
         this.onChangeProjectType = this.onChangeProjectType.bind(this);
@@ -13,13 +19,13 @@ export default class CreateProjectType extends Component{
         }
     }
 
-    onChangeProjectType(e){
+    onChangeProjectType(e) {
         this.setState({
             ProjectType: e.target.value
         });
     }
 
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
 
         const Project = {
@@ -38,14 +44,14 @@ export default class CreateProjectType extends Component{
         });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <h3>Create New Project Type</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>ProjectType:</label>
-                        <input 
+                        <input
                             type="text"
                             required
                             className="form-control"
@@ -65,3 +71,7 @@ export default class CreateProjectType extends Component{
         )
     }
 }
+
+export default connect(
+    mapStateToProps
+)(CreateProject);

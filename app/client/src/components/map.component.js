@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import axios from 'axios';
+import { connect } from 'react-redux';
+
 
 // icons
 import SchoolName from '../assets/SchoolName.svg';
@@ -17,7 +19,12 @@ const mapboxApiKey = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 // Mapbox Style
 const mapboxStyle = process.env.REACT_APP_MAP_STYLE;
 
-export default class Map extends Component{
+// map state to props for redux store
+const mapStateToProps = ({ session }) => ({
+    session
+});
+
+class Map extends Component{
     constructor(props){
         super(props)
 
@@ -152,3 +159,7 @@ export default class Map extends Component{
         )
     }
 }
+
+export default connect(
+    mapStateToProps
+)(Map);

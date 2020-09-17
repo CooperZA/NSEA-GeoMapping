@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './navbar.component';
+import { connect } from 'react-redux';
 
-export default class EditProject extends Component {
+const mapStateToProps = ({ session }) => ({
+    session
+});
+
+class EditProject extends Component {
     constructor(props) {
         super(props);
 
@@ -158,7 +163,7 @@ export default class EditProject extends Component {
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Type:</label>
-                            <select ref="userInput" required className="form-control" value={this.state.ProjectType} onChange={this.onChangeProjectType}>
+                            <select required className="form-control" value={this.state.ProjectType} onChange={this.onChangeProjectType}>
                                 {
                                     // create drop down options
                                     this.state.ProjectTypeArr.map((pt) => {
@@ -258,3 +263,7 @@ export default class EditProject extends Component {
         )
     }
 }
+
+export default connect(
+    mapStateToProps
+)(EditProject);

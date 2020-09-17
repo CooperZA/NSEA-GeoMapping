@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './navbar.component';
+import { connect } from 'react-redux';
+import { logout } from '../actions/session';
+
+const mapStateToProps = ({ session }) => ({
+    session
+});
+
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logout())
+});
 
 // functional React component
 // called in projectList method
@@ -23,7 +33,7 @@ const Project = props => (
     </tr>
 )
 
-export default class ProjectList extends Component {
+class ProjectList extends Component {
     constructor(props) {
         super(props);
 
@@ -70,6 +80,7 @@ export default class ProjectList extends Component {
         return (
             <div>
                 <Navbar />
+                <button className="btn-primary" onClick={this.props.logout}>Logout</button>
                 <div className="container">
                     <h3>Projects</h3>
                     <table className="table">
@@ -95,3 +106,8 @@ export default class ProjectList extends Component {
         )
     }
 }
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProjectList);

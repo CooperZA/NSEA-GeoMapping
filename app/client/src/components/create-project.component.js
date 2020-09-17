@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './navbar.component';
+import { connect } from 'react-redux';
 
-export default class CreateProject extends Component {
+const mapStateToProps = ({ session }) => ({
+    session
+});
+
+class CreateProject extends Component {
     constructor(props) {
         super(props);
 
@@ -125,7 +130,7 @@ export default class CreateProject extends Component {
 
         console.log(project);
 
-        axios.post('http://localhost:5000/projects/add', project)
+        axios.post('projects/add', project)
             .then(res => console.log(res.data))
             .catch(err => console.log('Error posting project: ' + err));
 
@@ -141,7 +146,7 @@ export default class CreateProject extends Component {
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Type:</label>
-                            <select ref="userInput" required className="form-control" value={this.state.ProjectType} onChange={this.onChangeProjectType}>
+                            <select required className="form-control" value={this.state.ProjectType} onChange={this.onChangeProjectType}>
                                 {
                                     // create drop down options
                                     this.state.ProjectTypeArr.map((pt) => {
@@ -241,3 +246,7 @@ export default class CreateProject extends Component {
         )
     }
 }
+
+export default connect(
+    mapStateToProps
+)(CreateProject);
