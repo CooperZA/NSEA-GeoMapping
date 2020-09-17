@@ -7,10 +7,12 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { checkLoggedIn } from "./util/session";
 
-let preloadedState = {};
+// let preloadedState = {};
 
 const renderApp = preloadedState => {
   const store = configureStore(preloadedState);
+  window.state = store.getState;
+
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
@@ -18,8 +20,8 @@ const renderApp = preloadedState => {
       </Provider>
     </React.StrictMode>,
     document.getElementById('root')
-  );
-};
+    );
+  };
 
 (async () => renderApp(await checkLoggedIn()))();
 
