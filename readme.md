@@ -43,8 +43,8 @@ cd into app/client
 
 run npm install 
 
-Step 3 send me an email:
-send Zach an email zach@raincityolutions.com requesting access to the project and Zach will all the database to be read by all users.
+Step 3 set up uri:
+login to Mongodb account and create a uri and whitelist your ip address
 
 Step 4 run project:
 in the backend terminal you opened earlier 
